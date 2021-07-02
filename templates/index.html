@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" integrity="sha512-EZLkOqwILORob+p0BXZc+Vm3RgJBOe1Iq/0fiI7r/wJgzOFZMlsqTa29UEl6v6U6gsV4uIpsNZoV32YZqrCRCQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap" rel="stylesheet">
+    <title>insKru tagging helper</title>
+</head>
+
+<style>
+    * {
+        font-family: 'Bai Jamjuree', sans-serif;
+        line-height: 21px;
+    }
+
+    .main {
+        margin-top: 50px;
+    }
+
+    textarea {
+        height: 40vh;
+    }
+
+    input {
+        height: 40px;
+        padding: 0 1em;
+    }
+
+    .badge {
+        display: inline-flex;
+        width: auto;
+        padding: 8px 15px;
+        background-color: #B5EAEA;
+        font-size: 0.9em;
+        border-radius: 25px;
+        margin: 0 7px 5px 7px;
+    }
+
+    .logo {
+        font-size: 0.4em;
+    }
+</style>
+
+<body>
+    <div class="container main">
+        <div class="row">
+            <h1>Tagging Helper <span class="logo">by insKru</span></h1>
+            <p>Fill the idea content and let the AI find the suitable tags for you!</p>
+            <label for="sampleTitle">Title</label>
+            <input class="u-full-width" id="sampleTitle" value="Google Lens เข้าใจโลกรอบตัว">
+    
+            <label for="sampleContent">Content</label>
+            <textarea class="textarea u-full-width" id="sampleContent">
+        เด็กๆ ประถมจะรู้สึกตื่นเต้นมากๆ เมื่อคุณครูพาออกนอกห้องเรียน สิ่งต่างๆ ที่อยู่รอบตัวนั้นดูน่าสนใจไปหมด ทำให้มีคำถามต่างๆ มากมายที่อยากถามคุณครู มีคำถามหนึ่งที่จะพบเจอประจำเลย นั่นก็คือ "คุณครูคะ มันคืออะไรเหรอคะ มีชื่อว่าอะไรคะ" หากเป็นสิ่งที่คุณครูรู้จักล่ะก็ คุณครูตอบได้สบายมากหายห่วง แต่หากไม่รู้จักล่ะก็ งานยากเลยค่ะที่นี้ จะตอบนักเรียนยังไงดีนะ ไปถามใครดีนะ ซึ่งครูแพรวก็พบเจอปัญหานี้เหมือนกันค่ะ แต่ครูแพรวมีตัวช่วย นั่นคือ app "Google lens" ทำให้เด็กๆได้หาคำตอบด้วยตัวเอง เพียงแค่ถ่ายรูปแชะเดียวก็ได้คำตอบที่ต้องการแล้วค่ะ
+        
+        ในการเรียนเรื่องการจำแนกสิ่งมีชีวิต สิ่งแรกที่เด็กๆ ต้องทำคือ ออกไปสำรวจสิ่งมีชีวิตที่อยู่นอกห้องเรียน แน่นอนว่าเมื่อออกจากห้องเรียนปุ๊บ เด็กๆ ก็ตื่นเต้นกันใหญ่ ตะโกนเรียกกันให้มาดูสิ่งที่เจอบ้าง ชี้ให้เพื่อนดูบ้าง สงสัยแล้ววิ่งมาถามครูแพรวบ้างว่ามันชื่อว่าอะไรคะ และแล้วก็ถึงเวลาที่ "Google lens" ออกโรง ครูแพรวได้บอกกับเด็กๆ ว่า มีสิ่งหนึ่งที่สามารถบอกเด็กๆ ได้ ว่าสิ่งที่เด็กๆ เจอ คืออะไร และชื่อว่าอะไร โดยไม่ต้องวิ่งมาถามครูแพรวเลย เด็กๆ ก็เกิดความสนใจทันที ครูแพรวก็เลยสาธิตการใช้ Google lens หากเด็กๆ อยากรู้ว่าเป็นดอกไม้ต้นไม้ชนิดไหน เข้า app นี้ ถ่ายรูปแล้วเลื่อนขึ้นมีจะมีข้อมูลชื่อดอกไม้ต้นไม้ที่เราอยากรู้ขึ้นมาทันที ทีนี้ล่ะค่ะ ไม่สนใจคุณครูแล้ว รีบเดิน รีบวิ่ง ไปใช้ Google lens กันใหญ่
+        
+        เมื่อสำรวจสิ่งมีชีวิตเสร็จแล้ว จากนั้นก็จำแนกสิ่งมีชีวิตออกเป็นกลุ่มว่า สิ่งมีชีวิตที่เด็กๆ พบเจอนั้นจำแนกเป็นกลุ่มอะไรได้บ้าง โดยใช้การสร้างอาหารซึ่ง สังเกตจากการมีใบสีเขียวและการเคลื่อนที่เป็นเกณฑ์ ได้ทั้งความสนุกและความรู้ไปพร้อมๆ กันเลยค่ะ
+        
+        Credit: https://inskru.com/idea/-MdLuCXijR7esNudWtIE
+            </textarea>
+        </div>
+        <script>
+            function sendRequest() {
+                const title = document.getElementById("sampleTitle").value
+                const content = document.getElementById("sampleContent").value
+                var xmlhttp = new XMLHttpRequest()
+
+                xmlhttp.open("POST", "/api/getTags")
+                xmlhttp.setRequestHeader("Content-Type", "application/json")
+                xmlhttp.send(JSON.stringify({title, content}))
+
+                xmlhttp.onreadystatechange = function() {
+                    if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+                        const result = JSON.parse(xmlhttp.responseText)
+                        let tags = ''
+                        for (let idx in result) {
+                            score = Math.round(result[idx]["score"] * 100) / 100
+                            tags += '<div class="badge">' + result[idx]["tag"] + ' ' + score + '</div>'
+                        }
+                        document.getElementById("tag-list").innerHTML = tags
+                    }
+                }
+            }
+        </script>
+        <div class="row">
+            <div class="two columns">
+                <input class="button-primary" type="submit" value="Submit" onclick="sendRequest()">
+            </div>
+            <div class="eight columns" id="tag-list"></div>
+        </div>
+    </div>
+</body>
+</html>
