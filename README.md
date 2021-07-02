@@ -1,2 +1,2 @@
-# inskru-tagging-helper
+# insKru tagging helper
 Tag recommendation service for insKru writers
