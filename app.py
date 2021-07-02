@@ -1,10 +1,7 @@
 from flask import Flask, render_template, request
 from tag_helper.tag_recommender import LRTagRecommender
 import json
-
-# Require this func to make the model pickler works
-def identity_fun(text):
-    return text
+from tag_helper.thai_tfidf_vectorizer import ThaiTdidfVectorizer
 
 
 app = Flask(__name__)
