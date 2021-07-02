@@ -5,7 +5,6 @@ from tag_helper.thai_tfidf_vectorizer import ThaiTdidfVectorizer
 
 
 app = Flask(__name__)
-model = LRTagRecommender()
 
 
 @app.route("/")
@@ -15,6 +14,7 @@ def index():
 
 @app.route("/api/getTags", methods=["POST"])
 def get_tags():
+    model = LRTagRecommender()
     req = request.json
     content = req["content"]
     title = req["title"]
