@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" integrity="sha512-EZLkOqwILORob+p0BXZc+Vm3RgJBOe1Iq/0fiI7r/wJgzOFZMlsqTa29UEl6v6U6gsV4uIpsNZoV32YZqrCRCQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"
+        integrity="sha512-EZLkOqwILORob+p0BXZc+Vm3RgJBOe1Iq/0fiI7r/wJgzOFZMlsqTa29UEl6v6U6gsV4uIpsNZoV32YZqrCRCQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap" rel="stylesheet">
@@ -22,7 +24,7 @@
     }
 
     textarea {
-        height: 40vh;
+        height: 32vh;
     }
 
     input {
@@ -52,7 +54,7 @@
             <p>Fill the idea content and let the AI find the suitable tags for you!</p>
             <label for="sampleTitle">Title</label>
             <input class="u-full-width" id="sampleTitle" value="Google Lens เข้าใจโลกรอบตัว">
-    
+
             <label for="sampleContent">Content</label>
             <textarea class="textarea u-full-width" id="sampleContent">
         เด็กๆ ประถมจะรู้สึกตื่นเต้นมากๆ เมื่อคุณครูพาออกนอกห้องเรียน สิ่งต่างๆ ที่อยู่รอบตัวนั้นดูน่าสนใจไปหมด ทำให้มีคำถามต่างๆ มากมายที่อยากถามคุณครู มีคำถามหนึ่งที่จะพบเจอประจำเลย นั่นก็คือ "คุณครูคะ มันคืออะไรเหรอคะ มีชื่อว่าอะไรคะ" หากเป็นสิ่งที่คุณครูรู้จักล่ะก็ คุณครูตอบได้สบายมากหายห่วง แต่หากไม่รู้จักล่ะก็ งานยากเลยค่ะที่นี้ จะตอบนักเรียนยังไงดีนะ ไปถามใครดีนะ ซึ่งครูแพรวก็พบเจอปัญหานี้เหมือนกันค่ะ แต่ครูแพรวมีตัวช่วย นั่นคือ app "Google lens" ทำให้เด็กๆได้หาคำตอบด้วยตัวเอง เพียงแค่ถ่ายรูปแชะเดียวก็ได้คำตอบที่ต้องการแล้วค่ะ
@@ -64,6 +66,10 @@
         Credit: https://inskru.com/idea/-MdLuCXijR7esNudWtIE
             </textarea>
         </div>
+        <label for="model">Model Select</label>
+        <select class="u-full-width" id="model">
+            <option value="tfidf_lr">TFIDF + LogisticRegression</option>
+        </select>
         <script>
             function sendRequest() {
                 const title = document.getElementById("sampleTitle").value
@@ -72,9 +78,9 @@
 
                 xmlhttp.open("POST", "/api/getTags")
                 xmlhttp.setRequestHeader("Content-Type", "application/json")
-                xmlhttp.send(JSON.stringify({title, content}))
+                xmlhttp.send(JSON.stringify({ title, content }))
 
-                xmlhttp.onreadystatechange = function() {
+                xmlhttp.onreadystatechange = function () {
                     if (xmlhttp.readyState == XMLHttpRequest.DONE) {
                         const result = JSON.parse(xmlhttp.responseText)
                         let tags = ''
@@ -95,4 +101,5 @@
         </div>
     </div>
 </body>
+
 </html>
