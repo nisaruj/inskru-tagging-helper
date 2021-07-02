@@ -1,11 +1,9 @@
 from flask import Flask, render_template, request
 from tag_helper.tag_recommender import LRTagRecommender
 import json
-from tag_helper.thai_tfidf_vectorizer import ThaiTdidfVectorizer
-
 
 app = Flask(__name__)
-
+model = LRTagRecommender()
 
 @app.route("/")
 def index():
@@ -14,7 +12,6 @@ def index():
 
 @app.route("/api/getTags", methods=["POST"])
 def get_tags():
-    model = LRTagRecommender()
     req = request.json
     content = req["content"]
     title = req["title"]

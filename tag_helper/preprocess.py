@@ -6,13 +6,20 @@ import re
 import string
 import pickle
 
-stop_words = thai_stopwords()
+class CustomUnpickler(pickle.Unpickler):
+    def find_class(self, module, name):
+        if name == 'ThaiTdidfVectorizer':
+            from tag_helper.thai_tfidf_vectorizer import ThaiTdidfVectorizer
+            return ThaiTdidfVectorizer
+        return super().find_class(module, name)
 
+
+stop_words = thai_stopwords()
 
 class DataPreparer:
     def __init__(self):
-        with open("tag_helper/models/tfidf_vec.pkl", "rb") as fp:
-            self.tfidf_vec = pickle.load(fp)
+        self.tfidf_vec = CustomUnpickler(open("tag_helper/models/tfidf_vec.pkl", 'rb')).load()
+        self.terms = self.tfidf_vec.get_feature_names()
 
     def remove_tags(html):
         return BeautifulSoup(html, "lxml").text
@@ -63,6 +70,13 @@ class DataPreparer:
     def tfidf_transform(self, tok):
         return self.tfidf_vec.transform(tok)
 
+    def rank_term(self, tfidf):
+        scores = []
+        print(tfidf)
+        for i in range(len(tfidf)):
+            scores.append((tfidf[i], self.terms[i]))
+        return sorted(scores, reverse=True)[:10]
+
     def preprocess(self, data):
         content = data["content"]
         content = DataPreparer.clean_content(content)
@@ -70,4 +84,5 @@ class DataPreparer:
         tok = DataPreparer.perform_removal(tok)
         tfidf = self.tfidf_transform([tok])
         tfidf = np.array(tfidf.todense())
+        # print(self.rank_term(tfidf[0]))
         return tfidf
