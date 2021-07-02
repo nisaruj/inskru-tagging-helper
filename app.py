@@ -8,6 +8,7 @@ def identity_fun(text):
 
 
 app = Flask(__name__)
+model = LRTagRecommender()
 
 
 @app.route("/")
@@ -26,5 +27,4 @@ def get_tags():
 
 
 if __name__ == "__main__":
-    model = LRTagRecommender()
     app.run(host="0.0.0.0", debug=True)
