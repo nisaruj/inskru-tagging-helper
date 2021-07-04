@@ -7,3 +7,4 @@ scikit-learn==0.24.2
 lxml==4.6.3
 Flask==2.0.1
 gunicorn==20.0.4
+attacut=1.0.6

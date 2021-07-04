@@ -2,9 +2,6 @@ import pickle
 from .preprocess import DataPreparer
 
 IDEA_CAT = [
-    "boardgame",
-    "powerpoint",
-    "stem",
     "การงานอาชีพ",
     "กิจกรรมเสริม",
     "คณิตศาสตร์",
@@ -28,7 +25,7 @@ IDEA_CAT = [
 ]
 
 
-def decode_output(pred, threshold=0.15):
+def decode_output(pred, threshold=0.2):
     result = []
     for idx, prob in enumerate(pred):
         if prob > threshold:
