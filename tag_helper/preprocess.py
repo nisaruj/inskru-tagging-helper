@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
-import attacut
 from pythainlp.corpus.common import thai_stopwords
+from pythainlp.tokenize import word_tokenize
 import numpy as np
 import re
 import string
@@ -53,7 +53,7 @@ class DataPreparer:
         return text
 
     def tokenize(content):
-        return attacut.tokenize(content)
+        return word_tokenize(content)
 
     def word_removal(word):
         word = word.strip()
