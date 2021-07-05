@@ -46,6 +46,10 @@
     .tag {
         font-size: 0.8em;
     }
+
+    .badge-ternary {
+        background-color: #ddd;
+    }
 </style>
 
 <body>
@@ -55,13 +59,13 @@
         </div>
         <div>
             <p>Fill the idea content and let the AI find the suitable tags for you!
-                <a class="btn btn-link" style="padding: 0; margin: 0 1em;" data-toggle="collapse" href="#apidocs"
+                <!-- <a class="btn btn-link" style="padding: 0; margin: 0 1em;" data-toggle="collapse" href="#apidocs"
                     role="button" aria-expanded="false" aria-controls="apidocs">
                     API doc
-                </a>
+                </a> -->
             </p>
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="collapse col" id="apidocs">
                 <div class="card card-body" style="width: 100%;">
                     <p>Send a <code>POST</code> request with a JSON body. The schema is described below. The result
@@ -81,7 +85,7 @@ POST /api/getTags
                 </div>
             </div>
         </div>
-        <br />
+        <br /> -->
         <form>
             <div class="form-group">
                 <label for="sampleTitle">Title</label>
@@ -145,7 +149,8 @@ POST /api/getTags
 
             xmlhttp.onreadystatechange = function () {
                 if (xmlhttp.readyState == XMLHttpRequest.DONE) {
-                    const result = JSON.parse(xmlhttp.responseText)
+                    const res = JSON.parse(xmlhttp.responseText)
+                    const result = res['general']
                     let tags = ''
                     let badges = ''
                     for (let idx in result) {
@@ -161,6 +166,12 @@ POST /api/getTags
                                 </div>`
                         badges += `<span class="badge badge-pill badge-secondary">${result[idx]["tag"]}</span>`
                     }
+
+                    const keywords = res['keywords']
+                    for (let idx in keywords) {
+                        badges += `<span class="badge badge-pill badge-ternary">${keywords[idx]}</span>`
+                    }
+
                     document.getElementById("tag-list").innerHTML = tags
                     document.getElementById("badge-list").innerHTML = badges
                 }

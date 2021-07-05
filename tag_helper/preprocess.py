@@ -23,7 +23,7 @@ stop_words = thai_stopwords()
 class DataPreparer:
     def __init__(self):
         self.tfidf_vec = CustomUnpickler(
-            open("tag_helper/models/tfidf_vec.pkl", "rb")
+            open("tag_helper/models/tfidf_bigram_vec.pkl", "rb")
         ).load()
         self.terms = self.tfidf_vec.get_feature_names()
 
@@ -91,21 +91,20 @@ class DataPreparer:
             features.append(int(flag))
         return np.array(features)
 
-    def rank_term(self, tfidf):
-        scores = []
-        print(tfidf)
-        for i in range(len(tfidf)):
-            scores.append((tfidf[i], self.terms[i]))
-        return sorted(scores, reverse=True)[:10]
+    def get_tfidf_terms(self):
+        return self.terms
 
     def preprocess(self, data):
         raw_content = data["content"]
         content = DataPreparer.clean_content(raw_content)
+
         tok = DataPreparer.tokenize(content)
         tok = DataPreparer.perform_removal(tok)
         tfidf = self.tfidf_transform([tok])
         tfidf = np.array(tfidf.todense())
+
         tfidf_and_handcraft = np.append(
             tfidf.reshape(-1), DataPreparer.contains_essential_keyword(raw_content)
         ).reshape(1, -1)
-        return tfidf_and_handcraft
+
+        return tfidf[0], tfidf_and_handcraft

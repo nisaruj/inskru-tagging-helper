@@ -13,11 +13,14 @@ def index():
 @app.route("/api/getTags", methods=["POST"])
 def get_tags():
     req = request.json
-    content = req["content"]
     title = req["title"]
-    result = model.infer({"content": content})
-    result = list(map(lambda tag: {"tag": tag[0], "score": tag[1]}, result))
-    return json.dumps(result, ensure_ascii=False)
+    content = title + ' ' + req["content"]
+    result, keyword = model.infer({"content": content})
+    payload = {
+        "general": list(map(lambda tag: {"tag": tag[0], "score": tag[1]}, result)),
+        "keywords": keyword
+    }
+    return json.dumps(payload, ensure_ascii=False)
 
 
 if __name__ == "__main__":
