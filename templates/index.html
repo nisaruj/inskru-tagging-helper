@@ -31,7 +31,8 @@
         padding: 8px 15px;
         font-size: 0.9em;
         border-radius: 25px;
-        margin: 0 7px;
+        margin: 5px 7px;
+        font-weight: 400;
     }
 
     .logo {
@@ -49,15 +50,16 @@
 
 <body>
     <div class="container main">
-        <div class="row">
+        <div>
             <h1>Tagging Helper <span class="logo">by insKru</span></h1>
         </div>
-        <div class="row">
-            <p>Fill the idea content and let the AI find the suitable tags for you! </p>
-            <a class="btn btn-link" style="padding: 0; margin: 0 1em;" data-toggle="collapse" href="#apidocs"
-                role="button" aria-expanded="false" aria-controls="apidocs">
-                API doc
-            </a>
+        <div>
+            <p>Fill the idea content and let the AI find the suitable tags for you!
+                <a class="btn btn-link" style="padding: 0; margin: 0 1em;" data-toggle="collapse" href="#apidocs"
+                    role="button" aria-expanded="false" aria-controls="apidocs">
+                    API doc
+                </a>
+            </p>
         </div>
         <div class="row">
             <div class="collapse col" id="apidocs">
@@ -83,7 +85,8 @@ POST /api/getTags
         <form>
             <div class="form-group">
                 <label for="sampleTitle">Title</label>
-                <input class="form-control" id="sampleTitle" value="พฤติกรรมสัตว์มหัศจรรย์..บนถุงผ้าของฉัน (https://inskru.com/idea/-MdftcvCyk9cLDwBFSDR)"
+                <input class="form-control" id="sampleTitle"
+                    value="พฤติกรรมสัตว์มหัศจรรย์..บนถุงผ้าของฉัน (https://inskru.com/idea/-MdftcvCyk9cLDwBFSDR)"
                     onfocus="this.select();">
             </div>
             <div class="form-group">
@@ -120,14 +123,15 @@ POST /api/getTags
             </div> -->
             <div class="row align-items-center">
                 <div class="col-1">
-                    <button class="btn btn-primary" type="button" value="Submit" onclick="sendRequest()">Submit</button>
+                    <button class="btn btn-primary" style="margin: 10px 0;" type="button" value="Submit"
+                        onclick="sendRequest()">Submit</button>
                 </div>
-                <div class="col">
+                <div class="col-md-11">
                     <div class="result-badge" id="badge-list"></div>
                 </div>
             </div>
+            <div class="result" id="tag-list"></div>
         </form>
-        <div class="result" id="tag-list"></div>
     </div>
     <script>
         function sendRequest() {
@@ -147,14 +151,15 @@ POST /api/getTags
                     for (let idx in result) {
                         score = Math.round(result[idx]["score"] * 100)
                         tags += `<div class="row align-items-center">
-                                    <div class="col-1 tag">${result[idx]["tag"]}</div>
-                                    <div class="col-4">
+                                    <div class="tag">${score}%</div>
+                                    <div class="col-7 col-lg-5">
                                         <div class="progress" style="height: 6px;">
                                             <div class="progress-bar" role="progressbar" style="width: ${score}%" aria-valuenow="${score}" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
+                                    <div class="col-4 col-lg-3 tag">${result[idx]["tag"]}</div>
                                 </div>`
-                        badges += `<span class="badge badge-pill badge-secondary">${result[idx]["tag"]} | ${score / 100}</span>`
+                        badges += `<span class="badge badge-pill badge-secondary">${result[idx]["tag"]}</span>`
                     }
                     document.getElementById("tag-list").innerHTML = tags
                     document.getElementById("badge-list").innerHTML = badges
